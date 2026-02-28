@@ -1,4 +1,4 @@
-# Restaurant Management System - Group Project
+ # Restaurant Management System - Group Project
 
 This is our final project for the *Mobile Application Development* course. We have developed a web-based system that helps a restaurant manage its menu and orders digitally. The system is fully responsive and works on both mobile and desktop screens.
 
