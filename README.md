@@ -40,7 +40,7 @@ We worked as a team to complete this project. Below is the breakdown of our memb
 * index.html - Login and Registration portal.
 * menu.html - Customer menu and ordering interface.
 * admin.html - Admin dashboard for managing food items.
-* Report.pdf - Our detailed technical project report.
+* REPORT.pdf - Our detailed technical project report.
 
 *Instructor:* Mr. Amani Rukoijo  
 *Submission Date:* 01 March 2026 
