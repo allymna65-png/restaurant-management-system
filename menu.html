@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Dashboard | Hotel Services</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f9f9f9; }
+        .navbar { background: #222; color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('bg.png'); height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center; }
+        .about-box { padding: 40px 10%; background: white; text-align: center; border-bottom: 2px solid #eee; }
+        .container { padding: 40px 5%; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee; }
+        .price { color: #e65100; font-size: 22px; font-weight: bold; margin: 10px 0; }
+        .btn-order { background: #ff6600; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; width: 100%; }
+        .footer { background: #222; color: white; padding: 40px; text-align: center; }
+        .contact-list { list-style: none; padding: 0; line-height: 2; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>PREMIER HOTEL</h2>
+        <button onclick="logout()" style="background:#444; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Logout</button>
+    </div>
+
+    <div class="hero">
+        <h1>Excellence in Every Bite</h1>
+        <p>Your Satisfaction is Our Priority</p>
+    </div>
+
+    <div class="about-box">
+        <h2>About Our Hotel</h2>
+        <p>We provide a premium culinary experience using farm-fresh ingredients. Our hotel blends traditional flavors with modern hospitality to create an unforgettable dining journey in Mbeya.</p>
+    </div>
+
+    <div class="container">
+        <h2>Available Menu Items</h2>
+        <div id="menu-display" class="menu-grid"></div>
+    </div>
+
+    <div class="footer">
+        <h3>Contact Us</h3>
+        <ul class="contact-list">
+            <li>📍 Iyunga, Mbeya, Tanzania</li>
+            <li>📱 +255 769 356 450</li>
+            <li>📱 +255 760 082 668</li>
+            <li>📱 +255 782 633 978</li>
+            <li>📱 +255 744 668 868</li>
+            <li>📧 info@restaurant.gmail.com</li>
+        </ul>
+    </div>
+
+<script>
+    // Security Check: Redirect if not logged in
+    if (!sessionStorage.getItem('sessionUser')) window.location.href = "index.html";
+
+    function loadItems() {
+        const grid = document.getElementById('menu-display');
+        const items = JSON.parse(localStorage.getItem('activeMenu')) || [];
+        grid.innerHTML = items.length ? "" : "<p>No items currently available.</p>";
+        
+        items.forEach((item, index) => {
+            grid.innerHTML += `
+                <div class="card">
+                    <h3>${item.name}</h3>
+                    <div class="price">Tsh ${item.price}</div>
+                    <button class="btn-order" onclick="placeOrder('${item.name}', '${item.price}')">Order Now</button>
+                </div>`;
+        });
+    }
+
+    function placeOrder(name, price) {
+        let orders = JSON.parse(localStorage.getItem('orderFeed')) || [];
+        orders.push({ customer: sessionStorage.getItem('sessionUser'), dish: name, cost: price, time: new Date().toLocaleTimeString() });
+        localStorage.setItem('orderFeed', JSON.stringify(orders));
+        alert("Success: Your order for " + name + " has been placed.");
+    }
+
+    function logout() { sessionStorage.clear(); window.location.href = "index.html"; }
+    window.onload = loadItems;
+</script>
+</body>
+</html>
