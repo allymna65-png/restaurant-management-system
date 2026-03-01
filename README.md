@@ -8,7 +8,7 @@ You can test the live system here:
 
 ## 🎥 Project Demo Video
 We have recorded a 10-minute video showing the CRUD operations, security, and responsiveness:
-[*Watch Demo on YouTube*](PASTE_YOUR_YOUTUBE_LINK_HERE)
+[*Watch Demo on YouTube*](https://youtu.be/cqzbYo3TBWI)
 
 ---
 
